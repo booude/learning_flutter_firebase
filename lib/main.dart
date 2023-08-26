@@ -5,10 +5,13 @@ import 'package:video_player/video_player.dart';
 import 'package:learning_flutter_firebase/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:learning_flutter_firebase/resources/save_video.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

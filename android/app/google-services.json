@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "108839768198",
+    "project_id": "learning-flutter-video",
+    "storage_bucket": "learning-flutter-video.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108839768198:android:a354c25644a45f4f2d8107",
+        "android_client_info": {
+          "package_name": "com.example.learning_flutter_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108839768198-prvup3sa2698h8torab62h96dmc396o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAedtakeVinoz3aP6FNJkSJHSFU_6Ea3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108839768198-prvup3sa2698h8torab62h96dmc396o5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
