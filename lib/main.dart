@@ -3,8 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:learning_flutter_firebase/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:learning_flutter_firebase/resources/save_video.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -36,6 +40,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? _videoURL;
   VideoPlayerController? _controller;
+  String? _downloadURL;
 
   @override
   void dispose() {
@@ -78,12 +83,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _videoPreviewWidget() {
     if (_controller != null) {
-      return AspectRatio(
-        aspectRatio: _controller!.value.aspectRatio,
-        child: VideoPlayer(_controller!),
+      return Column(
+        children: [
+          AspectRatio(
+            aspectRatio: _controller!.value.aspectRatio,
+            child: VideoPlayer(_controller!),
+          ),
+          ElevatedButton(onPressed: _uploadVideo, child: const Text('Upload')),
+        ],
       );
     } else {
       return const CircularProgressIndicator();
     }
+  }
+
+  void _uploadVideo() async {
+    _downloadURL = await StoreData().uploadVideo(_videoURL!);
+    await StoreData().saveVideoData(_downloadURL!);
+    setState(() {
+      _videoURL = null;
+    });
   }
 }
