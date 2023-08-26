@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:learning_flutter_firebase/screens/video_list.dart';
 import 'package:video_player/video_player.dart';
 import 'package:learning_flutter_firebase/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -57,6 +58,19 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VideoList(),
+                ),
+              );
+            },
+            icon: Icon(Icons.history),
+          ),
+        ],
       ),
       body: Center(
         child: _videoURL != null
@@ -73,7 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _pickVideo() async {
     _videoURL = await pickVideo();
-    _initializeVideoPlayer();
+    try {
+      _initializeVideoPlayer();
+    } catch (e) {
+      print(e.hashCode);
+    }
   }
 
   void _initializeVideoPlayer() {
